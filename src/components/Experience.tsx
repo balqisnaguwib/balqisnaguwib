@@ -109,7 +109,10 @@ const Experience: React.FC = () => {
         </div>
       </div>
       <div className="container">
-        <h2 className="section-title">Professional Experience</h2>
+        <div className="section-head">
+          <span className="eyebrow">Career so far</span>
+          <h2 className="section-title">Professional Experience</h2>
+        </div>
 
         <div className="experience-journey">
           <div className="journey-path">

@@ -15,7 +15,10 @@ const About: React.FC = () => {
         </div>
       </div>
       <div className="container">
-        <h2 className="section-title">About Me</h2>
+        <div className="section-head">
+          <span className="eyebrow">Who I am</span>
+          <h2 className="section-title">About Me</h2>
+        </div>
         
         <div className="about-content">
           <div className="about-text">

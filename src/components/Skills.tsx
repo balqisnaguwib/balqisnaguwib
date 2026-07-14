@@ -128,8 +128,11 @@ const Skills: React.FC = () => {
         </div>
       </div>
       <div className="container">
-        <h2 className="section-title">Skills & Expertise</h2>
-        
+        <div className="section-head">
+          <span className="eyebrow">My toolkit</span>
+          <h2 className="section-title">Skills & Expertise</h2>
+        </div>
+
         <div className="skills-content">
           <div className="skills-categories">
             {skillCategories.map((category, index) => (

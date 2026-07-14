@@ -101,7 +101,10 @@ const GitHubProjects: React.FC = () => {
     return (
       <section id="github-projects" className="section">
         <div className="container">
-          <h2 className="section-title">Open Source Projects</h2>
+          <div className="section-head">
+            <span className="eyebrow">On GitHub</span>
+            <h2 className="section-title">Open Source Projects</h2>
+          </div>
           <div className="loading-spinner">
             <div className="spinner"></div>
             <p>Loading repositories...</p>
@@ -115,7 +118,10 @@ const GitHubProjects: React.FC = () => {
     return (
       <section id="github-projects" className="section">
         <div className="container">
-          <h2 className="section-title">Open Source Projects</h2>
+          <div className="section-head">
+            <span className="eyebrow">On GitHub</span>
+            <h2 className="section-title">Open Source Projects</h2>
+          </div>
           <div className="error-message">
             <p>Unable to load repositories: {error}</p>
             <button onClick={fetchGitHubRepos} className="btn btn-primary">
@@ -130,7 +136,10 @@ const GitHubProjects: React.FC = () => {
   return (
     <section id="github-projects" className="section">
       <div className="container">
-        <h2 className="section-title">Open Source Projects</h2>
+        <div className="section-head">
+          <span className="eyebrow">On GitHub</span>
+          <h2 className="section-title">Open Source Projects</h2>
+        </div>
         <p className="github-intro">
           Explore my public repositories and contributions on GitHub
         </p>

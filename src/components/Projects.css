@@ -66,17 +66,20 @@
 
 .filter-btn {
   padding: var(--spacing-md) var(--spacing-xl);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-light);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--text-secondary);
   border-radius: var(--border-radius-lg);
+  font-family: var(--font-mono);
   font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   cursor: pointer;
   transition: var(--transition);
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
 }
@@ -97,8 +100,8 @@
 }
 
 .filter-btn:hover {
-  border-color: var(--primary-color);
-  background: rgba(0, 102, 204, 0.1);
+  border-color: color-mix(in srgb, var(--primary-color) 50%, transparent);
+  color: var(--text-primary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -106,20 +109,20 @@
 .filter-btn.active {
   background: var(--gradient-primary);
   border-color: transparent;
-  color: var(--text-light);
-  box-shadow: var(--shadow-lg);
+  color: #04060f;
+  box-shadow: var(--glow-cyan);
 }
 
 .filter-count {
-  background: rgba(255, 255, 255, 0.2);
+  background: color-mix(in srgb, var(--text-primary) 12%, transparent);
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-lg);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
 }
 
 .filter-btn.active .filter-count {
-  background: rgba(255, 255, 255, 0.3);
+  background: color-mix(in srgb, #04060f 18%, transparent);
 }
 
 /* Projects Grid */
@@ -133,10 +136,10 @@
 }
 
 .project-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-light);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--text-primary) 7%, transparent), color-mix(in srgb, var(--text-primary) 2%, transparent));
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-lg);
+  color: var(--text-primary);
   padding: 0;
   border-radius: var(--border-radius-lg);
   transition: var(--transition);
@@ -165,8 +168,8 @@
 /* Lift/scale is driven by Motion (whileHover) to avoid double-transform;
    keep the shadow + border accent here. */
 .project-card:hover {
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-  border-color: color-mix(in srgb, var(--accent-color) 40%, transparent);
+  border-color: color-mix(in srgb, var(--primary-color) 50%, transparent);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-xl), var(--glow-cyan);
 }
 
 
@@ -186,19 +189,22 @@
 }
 
 .project-category {
-  background: rgba(0, 102, 204, 0.2);
-  color: var(--accent-color);
+  background: color-mix(in srgb, var(--primary-color) 14%, transparent);
+  color: var(--primary-color);
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-sm);
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 1px;
-  border: 1px solid rgba(0, 204, 255, 0.3);
+  letter-spacing: 0.08em;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
 
 .project-status {
+  font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-sm);
   display: flex;
@@ -225,8 +231,9 @@
 }
 
 .project-date {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   font-weight: 500;
 }
 
@@ -242,14 +249,14 @@
 .project-title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--text-light);
+  color: var(--text-primary);
   margin-bottom: var(--spacing-sm);
   line-height: 1.3;
   letter-spacing: -0.01em;
 }
 
 .project-description {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: var(--spacing-md);
   font-size: 1rem;
@@ -269,9 +276,9 @@
   align-items: center;
   gap: var(--spacing-xs);
   padding: var(--spacing-sm);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg);
   border-radius: var(--border-radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
   min-width: 80px;
   transition: var(--transition);
 }
@@ -281,18 +288,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-color);
+  color: var(--primary-color);
 }
 
 .metric-value {
   font-weight: 700;
-  color: var(--accent-color);
+  color: var(--primary-color);
   font-size: 0.9rem;
 }
 
 .metric-label {
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-muted);
   text-align: center;
 }
 
@@ -304,18 +311,7 @@
   margin-bottom: var(--spacing-md);
 }
 
-.project-tech .tech-tag {
-  background: rgba(0, 102, 204, 0.2);
-  color: var(--accent-color);
-  border: 1px solid rgba(0, 102, 204, 0.3);
-  font-size: 0.8rem;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius-lg);
-  font-weight: 600;
-  transition: var(--transition);
-}
-
-
+/* Tech tags use the global .tech-tag styling (cyan mono pills). */
 
 /* Project Actions */
 .project-actions {
@@ -323,8 +319,8 @@
   display: flex;
   gap: var(--spacing-sm);
   flex-wrap: wrap;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid var(--glass-border);
+  background: color-mix(in srgb, var(--text-primary) 2%, transparent);
 }
 
 .action-btn {
@@ -358,7 +354,9 @@
 }
 
 .modal-content {
-  background: var(--background-primary);
+  background: linear-gradient(160deg, var(--background-dark), var(--background-darker));
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-xl);
   border-radius: var(--border-radius-lg);
   max-width: 800px;
   width: 100%;
@@ -366,7 +364,6 @@
   overflow-y: auto;
   position: relative;
   animation: modalSlideUp 0.3s ease-out;
-  box-shadow: var(--shadow-xl);
 }
 
 @keyframes modalSlideUp {
@@ -378,8 +375,8 @@
   position: absolute;
   top: var(--spacing-md);
   right: var(--spacing-md);
-  background: rgba(0, 0, 0, 0.1);
-  border: none;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   font-size: 2rem;
   color: var(--text-secondary);
   cursor: pointer;
@@ -402,7 +399,7 @@
 .modal-header {
   padding: var(--spacing-2xl);
   padding-bottom: var(--spacing-lg);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--glass-border);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -426,23 +423,27 @@
 
 .modal-category {
   background: var(--gradient-primary);
-  color: var(--text-light);
+  color: #04060f;
   padding: var(--spacing-xs) var(--spacing-md);
   border-radius: var(--border-radius-lg);
+  font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
 }
 
 .modal-date {
-  color: var(--text-secondary);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
   font-weight: 500;
   font-size: 0.9rem;
 }
 
 .modal-status {
+  font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-sm);
   display: flex;
@@ -501,9 +502,9 @@
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
-  background: var(--background-tertiary);
+  background: var(--glass-bg);
   border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--glass-border);
   transition: var(--transition);
 }
 
@@ -548,9 +549,9 @@
   gap: var(--spacing-sm);
   padding: var(--spacing-md);
   margin-bottom: var(--spacing-sm);
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.1));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-warm) 12%, transparent), color-mix(in srgb, var(--accent-color) 8%, transparent));
   border-radius: var(--border-radius-sm);
-  border-left: 4px solid #ffd700;
+  border-left: 4px solid var(--accent-warm);
   line-height: 1.6;
   color: var(--text-secondary);
   transition: var(--transition);
@@ -575,23 +576,7 @@
   gap: var(--spacing-xs);
 }
 
-.tech-grid .tech-tag {
-  background: rgba(0, 102, 204, 0.1);
-  color: var(--primary-color);
-  border: 1px solid rgba(0, 102, 204, 0.2);
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: var(--border-radius-lg);
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: var(--transition);
-}
-
-.tech-grid .tech-tag:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-}
+/* Tech tags use the global .tech-tag styling (cyan mono pills). */
 
 /* Responsive Design */
 @media (max-width: 768px) {
