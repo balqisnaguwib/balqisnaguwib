@@ -1,64 +1,48 @@
-# Balqis Naguwib - Portfolio
+# Balqis Naguwib — Portfolio
 
-A modern, responsive portfolio website built with React, TypeScript, and CSS. Features animations and styling inspired by react-bits.
+A modern, responsive portfolio for a Full Stack AI Engineer, built with React, TypeScript, and Vite.
 
-## 🚀 Features
+## ✨ Features
 
-- **Modern Design**: Clean, professional layout with smooth animations
-- **Responsive**: Optimized for all device sizes
-- **TypeScript**: Type-safe development
-- **CSS Animations**: Smooth transitions and interactive elements
-- **React Components**: Modular and reusable component architecture
+- **Light & dark themes** — respects the OS preference and remembers a manual toggle (no flash on load)
+- **Scroll-triggered reveals** — sections animate in as they enter the viewport (IntersectionObserver), and everything respects `prefers-reduced-motion`
+- **Responsive** — layouts adapt from mobile to desktop
+- **Accessible** — semantic markup, keyboard-focus styles, `aria` labels, SVG icons (Lucide) instead of emoji
+- **SEO-ready** — descriptive title, meta description, Open Graph / Twitter cards, SVG favicon
+- **Fast** — below-the-fold sections are code-split; the hero image ships as WebP; project demos are compressed MP4 with poster frames
+- **Typed** — end-to-end TypeScript with strict compilation
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 18, TypeScript
-- **Styling**: CSS3 with custom animations
-- **Build Tool**: Vite
-- **Deployment**: Ready for production deployment
+- **Framework**: React 18 + TypeScript
+- **Build tool**: Vite
+- **Styling**: CSS with a design-token system (CSS custom properties)
+- **Icons**: lucide-react
+- **Fonts**: Bricolage Grotesque (display), Geist (body), JetBrains Mono (accents)
 
 ## 📱 Sections
 
-- **Hero**: Dynamic typing animation with professional introduction
-- **About**: Personal story and journey
-- **Experience**: Professional timeline with detailed achievements
-- **Projects**: Interactive project showcase with modal details
-- **Skills**: Categorized technical skills with progress bars
-- **Contact**: Contact form and professional information
-
-## 🎨 Design Features
-
-- **Gradient Backgrounds**: Beautiful gradient overlays
-- **Floating Animations**: Subtle floating elements
-- **Interactive Cards**: Hover effects and transitions
-- **Dark/Light Sections**: Varied section themes
-- **Professional Color Scheme**: Blue-based palette
+- **Hero** — introduction with an animated role headline
+- **About** — background and focus areas
+- **Experience** — professional timeline
+- **Projects** — featured work with metrics, a detail modal, and video demos
+- **Open Source** — live GitHub repositories via the GitHub API
+- **Skills** — categorized technical skills and certifications
+- **Contact** — direct links (email, phone, location, LinkedIn, GitHub)
 
 ## 🚀 Getting Started
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-2. Start development server:
-   ```bash
-   npm run dev
-   ```
-
-3. Build for production:
-   ```bash
-   npm run build
-   ```
+```bash
+npm install     # install dependencies
+npm run dev     # start the dev server
+npm run build   # type-check and build for production
+npm run preview # preview the production build
+```
 
 ## 📞 Contact
 
 **Balqis Naguwib**
+
 - Email: balqisnaguwib@gmail.com
-- Phone: +60139892596
 - LinkedIn: [linkedin.com/in/balqisnaguwib](https://linkedin.com/in/balqisnaguwib)
 - GitHub: [github.com/balqisnaguwib](https://github.com/balqisnaguwib)
-
----
-
-*Available for full-time employment starting September 1st, 2025*

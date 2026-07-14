@@ -1,10 +1,67 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Balqis Naguwib - Full Stack AI Engineer</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Primary meta -->
+    <title>Balqis Naguwib — Full Stack AI Engineer</title>
+    <meta
+      name="description"
+      content="Balqis Naguwib is a Full Stack AI Engineer building end-to-end AI systems and scalable web apps with Python, FastAPI, React and deep learning. Open to full-time roles."
+    />
+    <meta name="author" content="Balqis Naguwib" />
+    <meta name="theme-color" content="#0052cc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0f1c" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href="https://balqisnaguwib.github.io/" />
+
+    <!-- Open Graph / social preview (the job-hunt distribution surface) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Balqis Naguwib — Full Stack AI Engineer" />
+    <meta
+      property="og:description"
+      content="End-to-end AI solutions and scalable web applications — Python, FastAPI, React, PyTorch. Open to full-time roles."
+    />
+    <meta property="og:url" content="https://balqisnaguwib.github.io/" />
+    <meta property="og:image" content="https://balqisnaguwib.github.io/balqis-photo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Balqis Naguwib — Full Stack AI Engineer" />
+    <meta
+      name="twitter:description"
+      content="End-to-end AI solutions and scalable web applications. Open to full-time roles."
+    />
+    <meta name="twitter:image" content="https://balqisnaguwib.github.io/balqis-photo.png" />
+
+    <!-- Fonts: distinctive display (Bricolage Grotesque) + clean body (Geist) + mono accent (JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- No-flash theme + motion setup: runs before first paint -->
+    <script>
+      (function () {
+        var d = document.documentElement;
+        try {
+          var t = localStorage.getItem('theme');
+          if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          d.setAttribute('data-theme', t);
+        } catch (e) {
+          d.setAttribute('data-theme', 'light');
+        }
+        try {
+          // Only opt in to hide-then-reveal animations when motion is allowed.
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            d.classList.add('reveal-ready');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
