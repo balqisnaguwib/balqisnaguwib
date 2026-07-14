@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
+import ScrollProgress from './components/ScrollProgress'
 import { useScrollReveal } from './hooks/useScrollReveal'
 
 // Above-the-fold (Header, Hero) load eagerly; everything below is code-split
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      <ScrollProgress />
       <Header />
       <Hero />
       <Suspense fallback={<div style={{ minHeight: '40vh' }} aria-hidden="true" />}>

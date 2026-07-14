@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { m, AnimatePresence, useReducedMotion } from 'motion/react'
+import { fadeUp, staggerContainer, inViewOnce, springHover } from '../motion/variants'
 import {
   CheckCircle2,
   Construction,
@@ -63,6 +65,7 @@ interface Project {
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const reduce = useReducedMotion()
 
   const projects: Project[] = [
     {
@@ -277,12 +280,22 @@ const Projects: React.FC = () => {
           ))}
         </div>
 
-        <div className="projects-grid">
-          {filteredProjects.map((project, index) => (
-            <div 
-              key={project.id} 
-              className={`project-card fade-in`} 
-              style={{animationDelay: `${index * 0.2}s`}}
+        <m.div
+          className="projects-grid"
+          variants={reduce ? undefined : staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={inViewOnce}
+        >
+          <AnimatePresence mode="popLayout">
+          {filteredProjects.map((project) => (
+            <m.div
+              key={project.id}
+              className="project-card"
+              layout
+              variants={reduce ? undefined : fadeUp}
+              exit={reduce ? undefined : { opacity: 0, scale: 0.92, transition: { duration: 0.2 } }}
+              whileHover={reduce ? undefined : { y: -10, scale: 1.02, transition: springHover }}
             >
 
               <div className="project-header">
@@ -349,15 +362,31 @@ const Projects: React.FC = () => {
                 </button>
               </div>
 
-            </div>
+            </m.div>
           ))}
-        </div>
+          </AnimatePresence>
+        </m.div>
       </div>
 
+      <AnimatePresence>
       {selectedProject && (
-        <div className="project-modal" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button 
+        <m.div
+          className="project-modal"
+          onClick={closeModal}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <m.div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 30, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 26 }}
+          >
+            <button
               className="modal-close"
               onClick={closeModal}
               title="Close Modal"
@@ -403,7 +432,7 @@ const Projects: React.FC = () => {
               
               {selectedProject.metrics && (
                 <div className="modal-metrics">
-                  <h4>Project Metrics</h4>
+                  <h4><BarChart3 size={20} aria-hidden="true" />Project Metrics</h4>
                   <div className="metrics-grid">
                     {selectedProject.metrics.map((metric, idx) => (
                       <div key={idx} className="modal-metric-item">
@@ -420,7 +449,7 @@ const Projects: React.FC = () => {
               
               {selectedProject.achievements && (
                 <div className="modal-achievements">
-                  <h4>Key Achievements</h4>
+                  <h4><Trophy size={20} aria-hidden="true" />Key Achievements</h4>
                   <ul>
                     {selectedProject.achievements.map((achievement, idx) => (
                       <li key={idx}>
@@ -433,7 +462,7 @@ const Projects: React.FC = () => {
               )}
               
               <div className="modal-tech">
-                <h4>Technologies Used</h4>
+                <h4><Code2 size={20} aria-hidden="true" />Technologies Used</h4>
                 <div className="tech-grid">
                   {selectedProject.technologies.map((tech) => (
                     <span key={tech} className="tech-tag">{tech}</span>
@@ -441,9 +470,10 @@ const Projects: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </m.div>
+        </m.div>
       )}
+      </AnimatePresence>
     </section>
   )
 }
