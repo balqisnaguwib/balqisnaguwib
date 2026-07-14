@@ -105,12 +105,29 @@
   filter: blur(1px);
 }
 
+/* Liquid-metal WebGL ring (Phase 3 showpiece) — occupies the same footprint
+   as .profile-bg, clipped to a circle; the photo frame sits on top. */
+.liquid-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.liquid-ring > * {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
 .profile-frame {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
   background: var(--surface);
   border-radius: 50%;
   display: flex;

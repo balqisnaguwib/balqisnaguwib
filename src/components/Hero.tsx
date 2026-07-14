@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy, Suspense } from 'react'
 import { m, useReducedMotion } from 'motion/react'
 import { FileDown } from 'lucide-react'
 import { fadeUp, staggerContainer, inViewOnce } from '../motion/variants'
+import { useShowcase } from '../hooks/useShowcase'
 import './Hero.css'
+
+// Code-split the WebGL shader so Paper Shaders stays out of the initial bundle.
+const LiquidMetalRing = lazy(() => import('./LiquidMetalRing'))
 
 const TITLES = ['Full Stack AI Engineer', 'Python Developer', 'React.js Specialist', 'Machine Learning Engineer']
 
@@ -34,6 +38,8 @@ const Hero: React.FC = () => {
 
     return () => clearTimeout(timeout)
   }, [displayText, currentIndex])
+
+  const showcase = useShowcase()
 
   // Reduced motion: collapse variants so everything renders in place.
   const container = reduce ? undefined : staggerContainer(0.1, 0.05)
@@ -97,7 +103,13 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
           >
             <div className="profile-container">
-              <div className="profile-bg"></div>
+              {showcase ? (
+                <Suspense fallback={<div className="profile-bg"></div>}>
+                  <LiquidMetalRing />
+                </Suspense>
+              ) : (
+                <div className="profile-bg"></div>
+              )}
               <div className="profile-frame">
                 <div className="profile-placeholder">
                   <picture>
