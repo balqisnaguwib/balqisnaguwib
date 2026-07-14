@@ -81,7 +81,6 @@
 }
 
 .repo-card:hover {
-  transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
   border-color: color-mix(in srgb, var(--primary-color) 35%, transparent);
 }

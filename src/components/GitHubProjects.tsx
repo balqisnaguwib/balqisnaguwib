@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { m, useReducedMotion } from 'motion/react'
 import { FolderGit2, Star, GitFork } from 'lucide-react'
+import { fadeUp, staggerContainer, inViewOnce, springHover } from '../motion/variants'
 import { GithubIcon } from './BrandIcons'
 import './GitHubProjects.css'
 
@@ -23,6 +25,7 @@ const GitHubProjects: React.FC = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [displayCount, setDisplayCount] = useState(6)
+  const reduce = useReducedMotion()
 
   useEffect(() => {
     fetchGitHubRepos()
@@ -136,12 +139,19 @@ const GitHubProjects: React.FC = () => {
           Explore my public repositories and contributions on GitHub
         </p>
         
-        <div className="github-repos-grid">
-          {repos.slice(0, displayCount).map((repo, index) => (
-            <div 
-              key={repo.id} 
-              className="repo-card fade-in"
-              style={{animationDelay: `${index * 0.1}s`}}
+        <m.div
+          className="github-repos-grid"
+          variants={reduce ? undefined : staggerContainer(0.07)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={inViewOnce}
+        >
+          {repos.slice(0, displayCount).map((repo) => (
+            <m.div
+              key={repo.id}
+              className="repo-card"
+              variants={reduce ? undefined : fadeUp}
+              whileHover={reduce ? undefined : { y: -6, transition: springHover }}
               onClick={() => handleRepoClick(repo.html_url)}
             >
               <div className="repo-header">
@@ -191,10 +201,10 @@ const GitHubProjects: React.FC = () => {
                 </div>
                 
               </div>
-            </div>
+            </m.div>
           ))}
-        </div>
-        
+        </m.div>
+
         {repos.length > displayCount && (
           <div className="load-more-section">
             <button 
