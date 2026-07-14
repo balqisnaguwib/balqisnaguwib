@@ -93,10 +93,6 @@ const GitHubProjects: React.FC = () => {
     })
   }
 
-  const handleRepoClick = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer')
-  }
-
   const loadMore = () => {
     setDisplayCount(prev => prev + 6)
   }
@@ -147,12 +143,15 @@ const GitHubProjects: React.FC = () => {
           viewport={inViewOnce}
         >
           {repos.slice(0, displayCount).map((repo) => (
-            <m.div
+            <m.a
               key={repo.id}
               className="repo-card"
+              href={repo.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${repo.name} repository on GitHub`}
               variants={reduce ? undefined : fadeUp}
               whileHover={reduce ? undefined : { y: -6, transition: springHover }}
-              onClick={() => handleRepoClick(repo.html_url)}
             >
               <div className="repo-header">
                 <div className="repo-name">
@@ -201,7 +200,7 @@ const GitHubProjects: React.FC = () => {
                 </div>
                 
               </div>
-            </m.div>
+            </m.a>
           ))}
         </m.div>
 
