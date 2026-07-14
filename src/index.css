@@ -147,6 +147,19 @@ html {
   border-radius: 4px;
 }
 
+/* Scroll-reading progress bar (Motion useScroll) */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transform-origin: 0%;
+  transform: scaleX(0);
+  z-index: 1100;
+}
+
 .section-title {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
