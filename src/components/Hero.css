@@ -34,12 +34,25 @@
   letter-spacing: -0.02em;
 }
 
+/* Gradient name with a specular shine that sweeps across on hover.
+   At rest the shine layer sits off-screen (160%), so the resting look is just
+   the brand gradient; hover slides it across the letters. */
 .highlight {
-  background: var(--gradient-primary);
+  background-image:
+    linear-gradient(115deg, transparent 42%, color-mix(in srgb, #ffffff 70%, transparent) 50%, transparent 58%),
+    var(--gradient-primary);
+  background-size: 250% 100%, 100% 100%;
+  background-position: 160% 0, 0 0;
+  background-repeat: no-repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   position: relative;
+  transition: background-position 0.9s ease;
+}
+
+.hero-title:hover .highlight {
+  background-position: -60% 0, 0 0;
 }
 
 .hero-subtitle {
