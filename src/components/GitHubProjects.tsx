@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { FolderGit2, Star, GitFork } from 'lucide-react'
+import { GithubIcon } from './BrandIcons'
 import './GitHubProjects.css'
 
 interface GitHubRepo {
@@ -28,31 +30,32 @@ const GitHubProjects: React.FC = () => {
 
   const fetchGitHubRepos = async () => {
     try {
-      const response = await fetch('https://api.github.com/users/balqisnaguwib/repos?type=public&sort=updated')
-      
+      setError(null)
+      setLoading(true)
+      const response = await fetch('https://api.github.com/users/balqisnaguwib/repos?type=public&sort=updated&per_page=100')
+
       if (!response.ok) {
-        throw new Error(`Failed to fetch repositories: ${response.status} ${response.statusText}`)
+        // The unauthenticated GitHub API is limited to 60 requests/hour/IP.
+        if (response.status === 403 || response.status === 429) {
+          throw new Error("GitHub's public API rate limit was hit. Please try again shortly, or view the profile directly on GitHub.")
+        }
+        throw new Error(`Couldn't load repositories (${response.status}). Please try again.`)
       }
-      
+
       const data: GitHubRepo[] = await response.json()
-      console.log('GitHub API Response:', data)
-      
-      // Less strict filtering - just filter out forks
+
       const filteredRepos = data
-        .filter(repo => !repo.fork)
+        .filter((repo) => !repo.fork)
         .sort((a, b) => {
-          // Sort by stars first, then by update date
           if (b.stargazers_count !== a.stargazers_count) {
             return b.stargazers_count - a.stargazers_count
           }
           return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
         })
-      
-      console.log('Filtered repos:', filteredRepos)
+
       setRepos(filteredRepos)
     } catch (err) {
-      console.error('GitHub API Error:', err)
-      setError(err instanceof Error ? err.message : 'An error occurred')
+      setError(err instanceof Error ? err.message : 'An unexpected error occurred.')
     } finally {
       setLoading(false)
     }
@@ -129,7 +132,7 @@ const GitHubProjects: React.FC = () => {
     <section id="github-projects" className="section">
       <div className="container">
         <h2 className="section-title">Open Source Projects</h2>
-        <p className="section-subtitle">
+        <p className="github-intro">
           Explore my public repositories and contributions on GitHub
         </p>
         
@@ -143,16 +146,16 @@ const GitHubProjects: React.FC = () => {
             >
               <div className="repo-header">
                 <div className="repo-name">
-                  <span className="repo-icon">📁</span>
+                  <span className="repo-icon"><FolderGit2 size={19} aria-hidden="true" /></span>
                   <h3>{repo.name}</h3>
                 </div>
                 <div className="repo-stats">
                   <span className="stat">
-                    <span className="star-icon">⭐</span>
+                    <span className="star-icon"><Star size={15} aria-hidden="true" /></span>
                     {repo.stargazers_count}
                   </span>
                   <span className="stat">
-                    <span className="fork-icon">🔗</span>
+                    <span className="fork-icon"><GitFork size={15} aria-hidden="true" /></span>
                     {repo.forks_count}
                   </span>
                 </div>
@@ -210,7 +213,7 @@ const GitHubProjects: React.FC = () => {
             rel="noopener noreferrer"
             className="btn btn-secondary github-profile-btn"
           >
-            <span className="github-icon">🐙</span>
+            <span className="github-icon"><GithubIcon size={20} /></span>
             View Full GitHub Profile
           </a>
         </div>

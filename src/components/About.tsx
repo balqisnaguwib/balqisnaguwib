@@ -1,4 +1,5 @@
 import React from 'react'
+import { Bot, Globe, ScanSearch, BarChart3, GraduationCap, Trophy, Briefcase, Rocket } from 'lucide-react'
 import './About.css'
 
 const About: React.FC = () => {
@@ -31,19 +32,19 @@ const About: React.FC = () => {
               <h3>What I Do</h3>
               <ul className="about-list">
                 <li>
-                  <span className="list-icon">🤖</span>
+                  <span className="list-icon"><Bot size={20} aria-hidden="true" /></span>
                   Develop end-to-end AI solutions using Python, PyTorch, and TensorFlow
                 </li>
                 <li>
-                  <span className="list-icon">🌐</span>
+                  <span className="list-icon"><Globe size={20} aria-hidden="true" /></span>
                   Build scalable web applications with React.js, Next.js, and FastAPI
                 </li>
                 <li>
-                  <span className="list-icon">🔍</span>
+                  <span className="list-icon"><ScanSearch size={20} aria-hidden="true" /></span>
                   Implement computer vision and NLP systems for real-world applications
                 </li>
                 <li>
-                  <span className="list-icon">📊</span>
+                  <span className="list-icon"><BarChart3 size={20} aria-hidden="true" /></span>
                   Create intelligent chatbots and RAG systems for enterprise clients
                 </li>
               </ul>
@@ -68,31 +69,31 @@ const About: React.FC = () => {
           <div className="about-visual">
             <div className="about-card-grid">
               <div className="about-card card fade-in">
-                <div className="card-icon">🎓</div>
+                <div className="card-icon"><GraduationCap size={30} aria-hidden="true" /></div>
                 <h4>Education</h4>
                 <p>Bachelor of Engineering (Mechatronics)</p>
                 <small>International Islamic University Malaysia</small>
               </div>
-              
+
               <div className="about-card card fade-in">
-                <div className="card-icon">🏆</div>
+                <div className="card-icon"><Trophy size={30} aria-hidden="true" /></div>
                 <h4>Achievements</h4>
                 <p>Best Final Year Project</p>
                 <small>Mechatronics Department 2023</small>
               </div>
-              
+
               <div className="about-card card fade-in">
-                <div className="card-icon">💼</div>
+                <div className="card-icon"><Briefcase size={30} aria-hidden="true" /></div>
                 <h4>Current Role</h4>
                 <p>Assistant Manager, AI Model Engineer</p>
                 <small>Telekom Malaysia</small>
               </div>
-              
+
               <div className="about-card card fade-in">
-                <div className="card-icon">🚀</div>
+                <div className="card-icon"><Rocket size={30} aria-hidden="true" /></div>
                 <h4>Availability</h4>
                 <p>Open for full-time opportunities</p>
-                <small>Starting September 1st, 2025</small>
+                <small>Available to start immediately</small>
               </div>
             </div>
           </div>

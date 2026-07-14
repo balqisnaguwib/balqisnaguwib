@@ -1,35 +1,44 @@
 import React from 'react'
+import { Mail, Phone, MapPin } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from './BrandIcons'
 import './Contact.css'
+
+interface ContactItem {
+  icon: React.ElementType
+  label: string
+  value: string
+  link: string
+}
 
 const Contact: React.FC = () => {
 
-  const contactInfo = [
+  const contactInfo: ContactItem[] = [
     {
-      icon: '📧',
+      icon: Mail,
       label: 'Email',
       value: 'balqisnaguwib@gmail.com',
       link: 'mailto:balqisnaguwib@gmail.com'
     },
     {
-      icon: '📱',
+      icon: Phone,
       label: 'Phone',
       value: '+60139892596',
       link: 'tel:+60139892596'
     },
     {
-      icon: '📍',
+      icon: MapPin,
       label: 'Location',
       value: 'Sepang, Selangor, Malaysia',
       link: 'https://maps.google.com/?q=Sepang,Selangor,Malaysia'
     },
     {
-      icon: '💼',
+      icon: LinkedinIcon,
       label: 'LinkedIn',
       value: 'linkedin.com/in/balqisnaguwib',
       link: 'https://linkedin.com/in/balqisnaguwib'
     },
     {
-      icon: '🐙',
+      icon: GithubIcon,
       label: 'GitHub',
       value: 'github.com/balqisnaguwib',
       link: 'https://github.com/balqisnaguwib'
@@ -70,7 +79,7 @@ const Contact: React.FC = () => {
                   className={`contact-info-item fade-in`}
                   style={{animationDelay: `${index * 0.1}s`}}
                 >
-                  <div className="contact-icon">{info.icon}</div>
+                  <div className="contact-icon"><info.icon size={24} aria-hidden={true} /></div>
                   <div className="contact-details">
                     <div className="contact-label">{info.label}</div>
                     <div className="contact-value">{info.value}</div>

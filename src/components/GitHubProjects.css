@@ -1,35 +1,31 @@
 #github-projects {
-  padding: 80px 0;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: var(--spacing-3xl) 0;
+  background: linear-gradient(135deg, var(--background-secondary) 0%, var(--background-tertiary) 100%);
   position: relative;
 }
 
-#github-projects .section-title {
-  color: #1a202c;
-  margin-bottom: 20px;
-}
-
-#github-projects .section-subtitle {
-  color: #64748b;
+/* Renamed from .section-subtitle to avoid colliding with Experience.css's
+   global .section-subtitle (which is a flex row with a ::before accent bar). */
+.github-intro {
+  color: var(--text-secondary);
   font-size: 1.1rem;
   text-align: center;
-  margin-bottom: 50px;
+  margin: 0 auto 50px;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Loading & Error States */
 .loading-spinner {
   text-align: center;
   padding: 60px 0;
+  color: var(--text-secondary);
 }
 
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #e2e8f0;
-  border-top: 4px solid #3b82f6;
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--primary-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto 20px;
@@ -60,13 +56,13 @@
 }
 
 .repo-card {
-  background: white;
+  background: var(--surface);
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   cursor: pointer;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color);
   position: relative;
   overflow: hidden;
 }
@@ -78,14 +74,16 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  background: var(--gradient-primary);
   transform: scaleX(0);
+  transform-origin: left;
   transition: transform 0.3s ease;
 }
 
 .repo-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--primary-color) 35%, transparent);
 }
 
 .repo-card:hover::before {
@@ -109,14 +107,16 @@
 }
 
 .repo-icon {
-  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--primary-color);
   flex-shrink: 0;
 }
 
 .repo-name h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #1a202c;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
   margin: 0;
   word-break: break-word;
   line-height: 1.3;
@@ -132,23 +132,28 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 500;
+  font-family: var(--font-mono);
 }
 
-.star-icon, .fork-icon {
-  font-size: 0.875rem;
+.star-icon,
+.fork-icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
 }
 
 /* Repository Content */
 .repo-description {
-  color: #4a5568;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 16px;
   font-size: 0.95rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -162,18 +167,19 @@
 }
 
 .topic-tag {
-  background: #e0f2fe;
-  color: #0369a1;
+  background: color-mix(in srgb, var(--accent-color) 14%, transparent);
+  color: var(--primary-color);
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 0.75rem;
   font-weight: 500;
-  border: 1px solid #bae6fd;
+  font-family: var(--font-mono);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 30%, transparent);
 }
 
 .topic-more {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--background-tertiary);
+  color: var(--text-muted);
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 0.75rem;
@@ -195,7 +201,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #4a5568;
+  color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -208,106 +214,26 @@
 }
 
 .updated-date {
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 0.8rem;
 }
 
-
-/* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  border: none;
-  white-space: nowrap;
-}
-
-.btn-sm {
-  padding: 6px 12px;
-  font-size: 0.8rem;
-}
-
-.btn-primary {
-  background: #3b82f6;
-  color: white;
-}
-
-.btn-primary:hover {
-  background: #2563eb;
-  transform: translateY(-1px);
-}
-
-.btn-outline {
-  background: transparent;
-  color: #3b82f6;
-  border: 1px solid #3b82f6;
-}
-
-.btn-outline:hover {
-  background: #3b82f6;
-  color: white;
-  transform: translateY(-1px);
-}
-
-.btn-secondary {
-  background: #64748b;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background: #475569;
-  transform: translateY(-1px);
-}
-
-/* Load More & GitHub Profile */
+/* Load More & GitHub Profile — use the shared global .btn system (no local overrides) */
 .load-more-section {
   text-align: center;
   margin: 40px 0;
-}
-
-.load-more-btn {
-  padding: 12px 24px;
-  font-size: 1rem;
 }
 
 .github-link-section {
   text-align: center;
   margin-top: 40px;
   padding-top: 40px;
-  border-top: 1px solid #e2e8f0;
-}
-
-.github-profile-btn {
-  padding: 12px 24px;
-  font-size: 1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  border-top: 1px solid var(--border-color);
 }
 
 .github-icon {
-  font-size: 1.2rem;
-}
-
-/* Animations */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  display: inline-flex;
+  align-items: center;
 }
 
 /* Responsive Design */
@@ -316,23 +242,22 @@
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .repo-card {
     padding: 20px;
   }
-  
+
   .repo-header {
     flex-direction: column;
     gap: 12px;
     align-items: flex-start;
   }
-  
+
   .repo-stats {
     align-self: flex-end;
   }
-  
-  
-  #github-projects .section-subtitle {
+
+  .github-intro {
     font-size: 1rem;
   }
 }

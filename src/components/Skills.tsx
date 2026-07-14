@@ -1,10 +1,30 @@
 import React, { useState } from 'react'
+import {
+  Globe,
+  Server,
+  BrainCircuit,
+  Wrench,
+  GraduationCap,
+  ClipboardList,
+  Zap,
+  Code2,
+  Trophy,
+  Star,
+} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import './Skills.css'
 
 interface SkillCategory {
   title: string
-  icon: string
+  icon: LucideIcon
   skills: string[]
+}
+
+interface Certification {
+  name: string
+  issuer: string
+  date: string
+  icon: LucideIcon
 }
 
 const Skills: React.FC = () => {
@@ -13,7 +33,7 @@ const Skills: React.FC = () => {
   const skillCategories: SkillCategory[] = [
     {
       title: "Frontend Development",
-      icon: "🌐",
+      icon: Globe,
       skills: [
         "React.js",
         "Next.js", 
@@ -26,8 +46,8 @@ const Skills: React.FC = () => {
       ]
     },
     {
-      title: "Backend Development", 
-      icon: "⚙️",
+      title: "Backend Development",
+      icon: Server,
       skills: [
         "Python",
         "FastAPI",
@@ -41,7 +61,7 @@ const Skills: React.FC = () => {
     },
     {
       title: "AI/Machine Learning",
-      icon: "🤖",
+      icon: BrainCircuit,
       skills: [
         "PyTorch",
         "TensorFlow",
@@ -57,7 +77,7 @@ const Skills: React.FC = () => {
     },
     {
       title: "Tools & Platforms",
-      icon: "🛠️", 
+      icon: Wrench,
       skills: [
         "Power Platform",
         "Power BI",
@@ -73,26 +93,28 @@ const Skills: React.FC = () => {
     }
   ]
 
-  const certifications = [
+  const certifications: Certification[] = [
     {
       name: "AI Engineering Professional Certificate",
       issuer: "IBM",
       date: "03.2024",
-      icon: "🎓"
+      icon: GraduationCap
     },
     {
-      name: "Project Management Specialization", 
+      name: "Project Management Specialization",
       issuer: "Google",
       date: "05.2024",
-      icon: "📋"
+      icon: ClipboardList
     },
     {
       name: "Certification of Registration of Graduate Engineer",
       issuer: "BEM",
-      date: "10.2023", 
-      icon: "⚡"
+      date: "10.2023",
+      icon: Zap
     }
   ]
+
+  const ActiveIcon = skillCategories[activeCategory].icon
 
   return (
     <section id="skills" className="section gradient-bg">
@@ -125,7 +147,9 @@ const Skills: React.FC = () => {
                 aria-label={`View ${category.title} skills`}
                 type="button"
               >
-                <span className="category-icon" aria-hidden="true">{category.icon}</span>
+                <span className="category-icon" aria-hidden="true">
+                  <category.icon size={24} aria-hidden={true} />
+                </span>
                 <span className="category-title">{category.title}</span>
               </button>
             ))}
@@ -134,7 +158,9 @@ const Skills: React.FC = () => {
           <div className="skills-display">
             <div className="skills-header fade-in">
               <h3>
-                <span className="skill-icon">{skillCategories[activeCategory].icon}</span>
+                <span className="skill-icon" aria-hidden="true">
+                  <ActiveIcon size={26} aria-hidden={true} />
+                </span>
                 {skillCategories[activeCategory].title}
               </h3>
             </div>
@@ -154,7 +180,9 @@ const Skills: React.FC = () => {
           <div className="certifications-grid">
             {certifications.map((cert, index) => (
               <div key={index} className={`certification-card card fade-in`} style={{animationDelay: `${index * 0.2}s`}}>
-                <div className="cert-icon">{cert.icon}</div>
+                <div className="cert-icon" aria-hidden="true">
+                  <cert.icon size={26} aria-hidden={true} />
+                </div>
                 <div className="cert-content">
                   <h4 className="cert-name">{cert.name}</h4>
                   <p className="cert-issuer">{cert.issuer}</p>
@@ -168,21 +196,27 @@ const Skills: React.FC = () => {
         <div className="skills-summary">
           <div className="summary-stats">
             <div className="stat-card">
-              <div className="stat-icon">💻</div>
+              <div className="stat-icon" aria-hidden="true">
+                <Code2 size={26} aria-hidden={true} />
+              </div>
               <div className="stat-content">
                 <div className="stat-number">15+</div>
                 <div className="stat-label">Technologies</div>
               </div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon">🏆</div>
+              <div className="stat-icon" aria-hidden="true">
+                <Trophy size={26} aria-hidden={true} />
+              </div>
               <div className="stat-content">
                 <div className="stat-number">3</div>
                 <div className="stat-label">Certifications</div>
               </div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon">⭐</div>
+              <div className="stat-icon" aria-hidden="true">
+                <Star size={26} aria-hidden={true} />
+              </div>
               <div className="stat-content">
                 <div className="stat-number">90%</div>
                 <div className="stat-label">Avg Proficiency</div>

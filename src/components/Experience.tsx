@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Building2, MapPin, Briefcase, Trophy } from 'lucide-react'
 import './Experience.css'
 
 interface ExperienceItem {
@@ -11,12 +12,11 @@ interface ExperienceItem {
   current?: boolean
   technologies: string[]
   achievements: string[]
-  companyLogo?: string
 }
 
 const Experience: React.FC = () => {
   const [selectedExperience, setSelectedExperience] = useState<number | null>(null)
-  
+
   const experiences: ExperienceItem[] = [
     {
       id: 1,
@@ -36,8 +36,7 @@ const Experience: React.FC = () => {
         "Implemented multi-tenant architecture with embeddable widgets",
         "Developed real-time document management capabilities for RAG systems",
         "Led cross-functional team of 5 developers and data scientists"
-      ],
-      companyLogo: "🏢"
+      ]
     },
     {
       id: 2,
@@ -56,8 +55,7 @@ const Experience: React.FC = () => {
         "Streamlined digital service delivery processes",
         "Managed multi-million dollar IT infrastructure contracts",
         "Implemented cost-effective supply chain solutions"
-      ],
-      companyLogo: "🏢"
+      ]
     },
     {
       id: 3,
@@ -76,8 +74,7 @@ const Experience: React.FC = () => {
         "Successfully integrated AI chatbot with WhatsApp Business API",
         "Automated complex workflows between HubSpot, ChatDaddy, and Flowise",
         "Reduced manual processing time by 60% through automation"
-      ],
-      companyLogo: "🚀"
+      ]
     },
     {
       id: 4,
@@ -96,8 +93,7 @@ const Experience: React.FC = () => {
         "Curated and annotated 10,000+ images for training datasets",
         "Created interactive Power BI dashboards for real-time monitoring",
         "Reduced manual inspection time by 70% through automation"
-      ],
-      companyLogo: "🛸"
+      ]
     }
   ]
 
@@ -114,14 +110,14 @@ const Experience: React.FC = () => {
       </div>
       <div className="container">
         <h2 className="section-title">Professional Experience</h2>
-        
+
         <div className="experience-journey">
           <div className="journey-path">
             <div className="path-line"></div>
             {experiences.slice().reverse().map((exp, index) => (
               <div key={exp.id} className="journey-node" style={{left: `${(index * 25) + 12.5}%`}}>
                 <div className="node-dot">
-                  <span className="node-icon">{exp.companyLogo}</span>
+                  <span className="node-icon"><Building2 size={24} aria-hidden="true" /></span>
                 </div>
                 <div className="node-label">{exp.company}</div>
                 <div className="node-year">{exp.duration.split(' ')[0]}</div>
@@ -132,8 +128,8 @@ const Experience: React.FC = () => {
 
         <div className="experience-grid">
           {experiences.map((exp, index) => (
-            <div 
-              key={exp.id} 
+            <div
+              key={exp.id}
               className={`experience-card card fade-in`}
               style={{animationDelay: `${index * 0.2}s`}}
               onMouseEnter={() => setSelectedExperience(exp.id)}
@@ -141,14 +137,14 @@ const Experience: React.FC = () => {
             >
               {exp.current && (
                 <div className="current-badge">
-                  <span className="badge-icon">⚡</span>
+                  <span className="badge-icon"><Briefcase size={16} aria-hidden="true" /></span>
                   Current Position
                 </div>
               )}
-              
+
               <div className="card-header">
                 <div className="company-info">
-                  <div className="company-logo">{exp.companyLogo}</div>
+                  <div className="company-logo"><Building2 size={24} aria-hidden="true" /></div>
                   <div className="company-details">
                     <h3 className="job-title">{exp.title}</h3>
                     <div className="company-name">{exp.company}</div>
@@ -156,7 +152,7 @@ const Experience: React.FC = () => {
                 </div>
                 <div className="job-meta">
                   <div className="duration">{exp.duration}</div>
-                  <div className="location">📍 {exp.location}</div>
+                  <div className="location"><MapPin size={16} aria-hidden="true" /> {exp.location}</div>
                 </div>
               </div>
 
@@ -184,7 +180,7 @@ const Experience: React.FC = () => {
                   <div className="achievements-list">
                     {exp.achievements.map((achievement, idx) => (
                       <div key={idx} className="achievement-item">
-                        <span className="achievement-icon">🏆</span>
+                        <span className="achievement-icon"><Trophy size={16} aria-hidden="true" /></span>
                         {achievement}
                       </div>
                     ))}

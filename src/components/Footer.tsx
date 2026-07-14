@@ -1,24 +1,26 @@
 import React from 'react'
+import { Mail, MapPin, Phone, Heart } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from './BrandIcons'
 import './Footer.css'
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
-  
+
   const socialLinks = [
     {
       name: 'LinkedIn',
       url: 'https://linkedin.com/in/balqisnaguwib',
-      icon: '💼'
+      icon: <LinkedinIcon size={20} aria-hidden={true} />
     },
     {
       name: 'GitHub',
       url: 'https://github.com/balqisnaguwib',
-      icon: '🐙'
+      icon: <GithubIcon size={20} aria-hidden={true} />
     },
     {
       name: 'Email',
       url: 'mailto:balqisnaguwib@gmail.com',
-      icon: '📧'
+      icon: <Mail size={20} aria-hidden="true" />
     }
   ]
 
@@ -86,9 +88,9 @@ const Footer: React.FC = () => {
               <div className="footer-section">
                 <h4>Contact Info</h4>
                 <div className="contact-details">
-                  <p>📍 Sepang, Selangor, Malaysia</p>
-                  <p>📱 +60139892596</p>
-                  <p>📧 balqisnaguwib@gmail.com</p>
+                  <p><MapPin size={16} aria-hidden="true" /> Sepang, Selangor, Malaysia</p>
+                  <p><Phone size={16} aria-hidden="true" /> +60139892596</p>
+                  <p><Mail size={16} aria-hidden="true" /> balqisnaguwib@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -101,7 +103,8 @@ const Footer: React.FC = () => {
                 © {currentYear} Balqis Naguwib. All rights reserved.
               </p>
               <p className="footer-note">
-                Built with React & TypeScript • Designed with ❤️
+                Built with React & TypeScript • Designed with{' '}
+                <Heart size={14} aria-hidden="true" className="heart-icon" />
               </p>
             </div>
           </div>

@@ -1,5 +1,44 @@
 import React, { useState } from 'react'
+import {
+  CheckCircle2,
+  Construction,
+  Calendar,
+  Users,
+  Zap,
+  Target,
+  Rocket,
+  BarChart3,
+  Play,
+  Code2,
+  ClipboardList,
+  Trophy,
+  Sparkles,
+  type LucideIcon,
+} from 'lucide-react'
 import './Projects.css'
+
+// Map the emoji used in project metric data to Lucide icons (keeps the data
+// declarative while rendering real SVGs).
+const METRIC_ICONS: Record<string, LucideIcon> = {
+  '👥': Users,
+  '⚡': Zap,
+  '🎯': Target,
+  '🚀': Rocket,
+  '✅': CheckCircle2,
+  '📊': BarChart3,
+  '🏆': Trophy,
+}
+
+const StatusIcon: React.FC<{ status: Project['status']; size?: number }> = ({ status, size = 15 }) => {
+  if (status === 'completed') return <CheckCircle2 size={size} aria-hidden="true" />
+  if (status === 'in-progress') return <Construction size={size} aria-hidden="true" />
+  return <Calendar size={size} aria-hidden="true" />
+}
+
+const MetricIcon: React.FC<{ emoji: string; size?: number }> = ({ emoji, size = 16 }) => {
+  const Icon = METRIC_ICONS[emoji] ?? Sparkles
+  return <Icon size={size} aria-hidden="true" />
+}
 
 interface Project {
   id: number
@@ -34,7 +73,7 @@ const Projects: React.FC = () => {
       technologies: ["React", "Next.js", "FastAPI", "Azure OpenAI", "JWT", "RAG", "MySQL"],
       date: "05.2025",
       status: 'completed',
-      demoUrl: "chathubx.mov",
+      demoUrl: "/chathubx.mp4",
       achievements: [
         "Multi-tenant architecture supporting unlimited clients",
         "JWT authentication with role-based access control", 
@@ -58,7 +97,7 @@ const Projects: React.FC = () => {
       technologies: ["React", "Next.js", "FastAPI", "Computer Vision", "MySQL", "OCR"],
       date: "05.2025",
       status: 'completed',
-      demoUrl: "perodua.mov",
+      demoUrl: "/perodua.mp4",
       achievements: [
         "Consistent 30-second processing time for all invoice types",
         "Superior accuracy compared to traditional OCR methods",
@@ -139,7 +178,7 @@ const Projects: React.FC = () => {
 
   const handleDemoClick = (url: string, e: React.MouseEvent) => {
     e.stopPropagation()
-    if (url.toLowerCase().endsWith('.mov') || url.toLowerCase().endsWith('.mp4')) {
+    if (/\.(mp4|webm|mov)$/i.test(url)) {
       openVideoModal(url)
     } else {
       window.open(url, '_blank', 'noopener,noreferrer')
@@ -147,30 +186,52 @@ const Projects: React.FC = () => {
   }
 
   const openVideoModal = (videoUrl: string) => {
+    const posterUrl = videoUrl.replace(/\.(mp4|webm|mov)$/i, '-poster.jpg')
+
     const modal = document.createElement('div')
     modal.className = 'video-modal'
-    modal.innerHTML = `
-      <div class="video-modal-content">
-        <button class="video-modal-close">&times;</button>
-        <video controls autoplay muted style="width: 100%; max-width: 800px; height: auto;">
-          <source src="${videoUrl}" type="video/quicktime">
-          <source src="${videoUrl}" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    `
-    
+    modal.setAttribute('role', 'dialog')
+    modal.setAttribute('aria-modal', 'true')
+    modal.setAttribute('aria-label', 'Project demo video')
+
+    const content = document.createElement('div')
+    content.className = 'video-modal-content'
+
+    const closeBtn = document.createElement('button')
+    closeBtn.className = 'video-modal-close'
+    closeBtn.setAttribute('aria-label', 'Close video')
+    closeBtn.textContent = '×'
+
+    // H.264 MP4 plays across all modern browsers; the previous
+    // "video/quicktime" .mov source did not play in Chrome/Firefox.
+    const video = document.createElement('video')
+    video.controls = true
+    video.autoplay = true
+    video.playsInline = true
+    video.preload = 'metadata'
+    video.poster = posterUrl
+    video.src = videoUrl
+
+    content.appendChild(closeBtn)
+    content.appendChild(video)
+    modal.appendChild(content)
     document.body.appendChild(modal)
-    
+    document.body.style.overflow = 'hidden'
+
     const closeModal = () => {
-      document.body.removeChild(modal)
+      document.body.style.overflow = ''
+      document.removeEventListener('keydown', onKey)
+      if (modal.parentNode) document.body.removeChild(modal)
     }
-    
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeModal()
+    }
+
+    document.addEventListener('keydown', onKey)
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal()
     })
-    
-    modal.querySelector('.video-modal-close')?.addEventListener('click', closeModal)
+    closeBtn.addEventListener('click', closeModal)
   }
 
   const handleGithubClick = (url: string, e: React.MouseEvent) => {
@@ -230,9 +291,7 @@ const Projects: React.FC = () => {
                     {project.category.toUpperCase()}
                   </div>
                   <div className={`project-status status-${project.status}`}>
-                    {project.status === 'completed' && '✅'}
-                    {project.status === 'in-progress' && '🚧'}
-                    {project.status === 'planned' && '📅'}
+                    <StatusIcon status={project.status} />
                     {project.status.replace('-', ' ')}
                   </div>
                 </div>
@@ -247,7 +306,7 @@ const Projects: React.FC = () => {
                   <div className="project-metrics">
                     {project.metrics.map((metric, idx) => (
                       <div key={idx} className="metric-item">
-                        <span className="metric-icon">{metric.icon}</span>
+                        <span className="metric-icon"><MetricIcon emoji={metric.icon} /></span>
                         <span className="metric-value">{metric.value}</span>
                         <span className="metric-label">{metric.label}</span>
                       </div>
@@ -269,7 +328,7 @@ const Projects: React.FC = () => {
                     onClick={(e) => handleDemoClick(project.demoUrl!, e)}
                     title="View Demo"
                   >
-                    🚀 Demo
+                    <Play size={16} aria-hidden="true" /> Demo
                   </button>
                 )}
                 {project.githubUrl && (
@@ -278,7 +337,7 @@ const Projects: React.FC = () => {
                     onClick={(e) => handleGithubClick(project.githubUrl!, e)}
                     title="View Source Code"
                   >
-                    💻 Code
+                    <Code2 size={16} aria-hidden="true" /> Code
                   </button>
                 )}
                 <button 
@@ -286,7 +345,7 @@ const Projects: React.FC = () => {
                   onClick={() => handleProjectClick(project)}
                   title="View Project Details"
                 >
-                  📋 Details
+                  <ClipboardList size={16} aria-hidden="true" /> Details
                 </button>
               </div>
 
@@ -313,9 +372,7 @@ const Projects: React.FC = () => {
                   <span className="modal-category">{selectedProject.category.toUpperCase()}</span>
                   <span className="modal-date">{selectedProject.date}</span>
                   <span className={`modal-status status-${selectedProject.status}`}>
-                    {selectedProject.status === 'completed' && '✅'}
-                    {selectedProject.status === 'in-progress' && '🚧'}
-                    {selectedProject.status === 'planned' && '📅'}
+                    <StatusIcon status={selectedProject.status} />
                     {selectedProject.status.replace('-', ' ')}
                   </span>
                 </div>
@@ -327,7 +384,7 @@ const Projects: React.FC = () => {
                     className="btn btn-primary"
                     onClick={(e) => handleDemoClick(selectedProject.demoUrl!, e)}
                   >
-                    🚀 Demo
+                    <Play size={16} aria-hidden="true" /> Demo
                   </button>
                 )}
                 {selectedProject.githubUrl && (
@@ -335,7 +392,7 @@ const Projects: React.FC = () => {
                     className="btn btn-outline"
                     onClick={(e) => handleGithubClick(selectedProject.githubUrl!, e)}
                   >
-                    💻 View Code
+                    <Code2 size={16} aria-hidden="true" /> View Code
                   </button>
                 )}
               </div>
@@ -350,7 +407,7 @@ const Projects: React.FC = () => {
                   <div className="metrics-grid">
                     {selectedProject.metrics.map((metric, idx) => (
                       <div key={idx} className="modal-metric-item">
-                        <span className="metric-icon">{metric.icon}</span>
+                        <span className="metric-icon"><MetricIcon emoji={metric.icon} size={20} /></span>
                         <div className="metric-details">
                           <span className="metric-value">{metric.value}</span>
                           <span className="metric-label">{metric.label}</span>
@@ -367,7 +424,7 @@ const Projects: React.FC = () => {
                   <ul>
                     {selectedProject.achievements.map((achievement, idx) => (
                       <li key={idx}>
-                        <span className="achievement-bullet">🏆</span>
+                        <span className="achievement-bullet"><Trophy size={16} aria-hidden="true" /></span>
                         {achievement}
                       </li>
                     ))}
