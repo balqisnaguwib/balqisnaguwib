@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, X, Sun, Moon, FileDown } from 'lucide-react'
+import { useScrollSpy } from '../hooks/useScrollSpy'
 import './Header.css'
 
 interface NavItem {
@@ -9,12 +10,15 @@ interface NavItem {
 
 type Theme = 'light' | 'dark'
 
+const SECTION_IDS = ['hero', 'about', 'experience', 'projects', 'skills', 'contact']
+
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [theme, setTheme] = useState<Theme>(
     () => (document.documentElement.getAttribute('data-theme') as Theme) || 'light',
   )
+  const activeSection = useScrollSpy(SECTION_IDS)
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -50,16 +54,20 @@ const Header: React.FC = () => {
           </a>
 
           <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="nav-link"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive = item.href === `#${activeSection}`
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`nav-link ${isActive ? 'active' : ''}`}
+                  aria-current={isActive ? 'true' : undefined}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              )
+            })}
             <a
               href="/Balqis_Naguwib_Resume.pdf"
               className="nav-link nav-resume"

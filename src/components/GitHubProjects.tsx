@@ -93,10 +93,6 @@ const GitHubProjects: React.FC = () => {
     })
   }
 
-  const handleRepoClick = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer')
-  }
-
   const loadMore = () => {
     setDisplayCount(prev => prev + 6)
   }
@@ -105,7 +101,10 @@ const GitHubProjects: React.FC = () => {
     return (
       <section id="github-projects" className="section">
         <div className="container">
-          <h2 className="section-title">Open Source Projects</h2>
+          <div className="section-head">
+            <span className="eyebrow">On GitHub</span>
+            <h2 className="section-title">Open Source Projects</h2>
+          </div>
           <div className="loading-spinner">
             <div className="spinner"></div>
             <p>Loading repositories...</p>
@@ -119,7 +118,10 @@ const GitHubProjects: React.FC = () => {
     return (
       <section id="github-projects" className="section">
         <div className="container">
-          <h2 className="section-title">Open Source Projects</h2>
+          <div className="section-head">
+            <span className="eyebrow">On GitHub</span>
+            <h2 className="section-title">Open Source Projects</h2>
+          </div>
           <div className="error-message">
             <p>Unable to load repositories: {error}</p>
             <button onClick={fetchGitHubRepos} className="btn btn-primary">
@@ -134,7 +136,10 @@ const GitHubProjects: React.FC = () => {
   return (
     <section id="github-projects" className="section">
       <div className="container">
-        <h2 className="section-title">Open Source Projects</h2>
+        <div className="section-head">
+          <span className="eyebrow">On GitHub</span>
+          <h2 className="section-title">Open Source Projects</h2>
+        </div>
         <p className="github-intro">
           Explore my public repositories and contributions on GitHub
         </p>
@@ -147,12 +152,15 @@ const GitHubProjects: React.FC = () => {
           viewport={inViewOnce}
         >
           {repos.slice(0, displayCount).map((repo) => (
-            <m.div
+            <m.a
               key={repo.id}
               className="repo-card"
+              href={repo.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${repo.name} repository on GitHub`}
               variants={reduce ? undefined : fadeUp}
               whileHover={reduce ? undefined : { y: -6, transition: springHover }}
-              onClick={() => handleRepoClick(repo.html_url)}
             >
               <div className="repo-header">
                 <div className="repo-name">
@@ -201,7 +209,7 @@ const GitHubProjects: React.FC = () => {
                 </div>
                 
               </div>
-            </m.div>
+            </m.a>
           ))}
         </m.div>
 

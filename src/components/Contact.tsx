@@ -58,8 +58,10 @@ const Contact: React.FC = () => {
         </div>
       </div>
       <div className="container">
-        <h2 className="section-title" style={{color: 'white'}}>Get In Touch</h2>
-        
+        <div className="section-head">
+          <span className="eyebrow">Let's build something</span>
+          <h2 className="section-title">Get In Touch</h2>
+        </div>
 
         <div className="contact-content">
           <div className="contact-info-section">

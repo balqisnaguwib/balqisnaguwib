@@ -21,7 +21,7 @@
   height: 4px;
   background: var(--gradient-primary);
   border-radius: 2px;
-  box-shadow: 0 0 20px color-mix(in srgb, var(--primary-color) 30%, transparent);
+  box-shadow: var(--glow-cyan);
 }
 
 .journey-node {
@@ -37,17 +37,25 @@
 .node-dot {
   width: 60px;
   height: 60px;
-  background: var(--background-primary);
+  background: var(--background-secondary);
   border: 4px solid var(--primary-color);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  box-shadow: var(--shadow-lg);
+  color: var(--primary-color);
+  box-shadow: var(--shadow-lg), var(--glow-cyan);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+}
+
+.node-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
 }
 
 .node-dot::before {
@@ -70,9 +78,11 @@
 }
 
 .node-year {
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--primary-color);
+  letter-spacing: 0.08em;
   text-align: center;
   margin-top: 4px;
 }
@@ -96,36 +106,19 @@
 
 .experience-card {
   position: relative;
-  background: var(--background-primary);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--text-primary) 6%, transparent), color-mix(in srgb, var(--text-primary) 2%, transparent));
   border-radius: var(--border-radius-lg);
   padding: 0;
   overflow: hidden;
   transition: var(--transition);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-.experience-card::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: var(--gradient-primary);
-  border-radius: var(--border-radius-lg);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.experience-card:hover::before {
-  opacity: 1;
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-lg);
 }
 
 .experience-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-xl);
+  border-color: color-mix(in srgb, var(--primary-color) 45%, transparent);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-xl), var(--glow-cyan);
 }
 
 /* Current Badge */
@@ -171,15 +164,16 @@
 .company-logo {
   width: 60px;
   height: 60px;
-  background: var(--gradient-primary);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--primary-color) 16%, transparent), color-mix(in srgb, var(--primary-color) 4%, transparent));
+  border: 1px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
   border-radius: var(--border-radius);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.8rem;
-  color: white;
+  color: var(--primary-color);
   flex-shrink: 0;
-  box-shadow: var(--shadow-md);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--glow-cyan);
 }
 
 .company-details {
@@ -209,12 +203,15 @@
 }
 
 .duration {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
   margin-bottom: var(--spacing-xs);
   padding: var(--spacing-xs) var(--spacing-sm);
-  background: var(--background-tertiary);
+  background: color-mix(in srgb, var(--text-primary) 5%, transparent);
+  border: 1px solid var(--glass-border);
   border-radius: var(--border-radius-sm);
 }
 
@@ -357,25 +354,27 @@
 /* Card Footer */
 .card-footer {
   padding: var(--spacing-md) var(--spacing-xl);
-  background: var(--background-tertiary);
+  background: color-mix(in srgb, var(--text-primary) 3%, transparent);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--glass-border);
 }
 
 .experience-index {
+  font-family: var(--font-mono);
   font-size: 1.2rem;
   font-weight: 900;
   color: var(--primary-color);
-  background: var(--background-primary);
+  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+  border: 1px solid var(--glass-border);
   width: 40px;
   height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-sm);
+  box-shadow: inset 0 1px 0 var(--glass-hi);
 }
 
 .expand-indicator {

@@ -266,8 +266,11 @@ const Projects: React.FC = () => {
         </div>
       </div>
       <div className="container">
-        <h2 className="section-title" style={{color: 'white'}}>Featured Projects</h2>
-        
+        <div className="section-head">
+          <span className="eyebrow">Selected work</span>
+          <h2 className="section-title">Featured Projects</h2>
+        </div>
+
         <div className="project-filters">
           {filterOptions.map((filter) => (
             <button

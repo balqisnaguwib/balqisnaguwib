@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,12 +47,13 @@
         var d = document.documentElement;
         try {
           var t = localStorage.getItem('theme');
+          // Dark is the signature look; default to it unless the visitor chose light.
           if (t !== 'light' && t !== 'dark') {
-            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            t = 'dark';
           }
           d.setAttribute('data-theme', t);
         } catch (e) {
-          d.setAttribute('data-theme', 'light');
+          d.setAttribute('data-theme', 'dark');
         }
         try {
           // Only opt in to hide-then-reveal animations when motion is allowed.

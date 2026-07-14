@@ -13,6 +13,10 @@ export function useShowcase(): boolean {
   const [enabled, setEnabled] = useState(false)
 
   useEffect(() => {
+    if (new URLSearchParams(window.location.search).has('static')) {
+      setEnabled(false)
+      return
+    }
     const wide = window.matchMedia('(min-width: 768px)').matches
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 

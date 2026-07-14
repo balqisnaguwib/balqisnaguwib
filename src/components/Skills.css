@@ -17,8 +17,13 @@
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  background: var(--background-primary);
-  border: 2px solid var(--border-color);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--text-primary) 6%, transparent),
+    color-mix(in srgb, var(--text-primary) 2%, transparent)
+  );
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-lg);
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -35,23 +40,23 @@
 }
 
 .category-btn:hover {
-  border-color: var(--primary-color);
+  border-color: color-mix(in srgb, var(--primary-color) 50%, transparent);
   transform: translateX(5px);
-  box-shadow: var(--shadow-md);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-xl), var(--glow-cyan);
 }
 
 @media (hover: none) and (pointer: coarse) {
   .category-btn:hover {
     transform: none;
-    border-color: var(--border-color);
-    box-shadow: none;
+    border-color: var(--glass-border);
+    box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-lg);
   }
-  
+
   .category-btn:active {
     transform: scale(0.98);
-    background: var(--primary-color);
-    color: var(--text-light);
-    border-color: var(--primary-color);
+    background: var(--gradient-primary);
+    color: #04060f;
+    border-color: transparent;
   }
 }
 
@@ -71,11 +76,16 @@
 }
 
 .category-btn.active {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: var(--gradient-primary);
   border-color: transparent;
-  color: var(--text-light);
+  color: #04060f;
   transform: translateX(10px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--glow-cyan);
+}
+
+.category-btn.active .category-icon,
+.category-btn.active .category-title {
+  color: #04060f;
 }
 
 .category-icon {
@@ -83,7 +93,7 @@
   align-items: center;
   justify-content: center;
   min-width: 2rem;
-  color: inherit;
+  color: var(--primary-color);
 }
 
 .category-title {
@@ -127,18 +137,23 @@
 }
 
 .skill-item {
-  background: var(--background-secondary);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--text-primary) 6%, transparent),
+    color-mix(in srgb, var(--text-primary) 2%, transparent)
+  );
   padding: 1rem;
   border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-lg);
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .skill-item:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--primary-color);
+  border-color: color-mix(in srgb, var(--primary-color) 50%, transparent);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-xl), var(--glow-cyan);
 }
 
 .skill-name {
@@ -226,6 +241,13 @@
   align-items: center;
   gap: 1.5rem;
   padding: 2rem;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--text-primary) 6%, transparent),
+    color-mix(in srgb, var(--text-primary) 2%, transparent)
+  );
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-lg);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: var(--border-radius);
   -webkit-tap-highlight-color: transparent;
@@ -235,6 +257,8 @@
 
 .certification-card:hover {
   transform: translateY(-5px) scale(1.02);
+  border-color: color-mix(in srgb, var(--primary-color) 50%, transparent);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-xl), var(--glow-cyan);
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -274,8 +298,11 @@
 }
 
 .cert-date {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
 }
 
 .skills-summary {
@@ -299,11 +326,12 @@
   gap: 1rem;
   padding: 1.5rem;
   background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--primary-color) 10%, transparent),
-    color-mix(in srgb, var(--accent-color) 10%, transparent)
+    160deg,
+    color-mix(in srgb, var(--text-primary) 6%, transparent),
+    color-mix(in srgb, var(--text-primary) 2%, transparent)
   );
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-lg);
   border-radius: var(--border-radius);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-tap-highlight-color: transparent;
@@ -313,15 +341,16 @@
 
 .stat-card:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--primary-color) 50%, transparent);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-xl), var(--glow-cyan);
 }
 
 @media (hover: none) and (pointer: coarse) {
   .stat-card:hover {
     transform: none;
-    box-shadow: none;
+    box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-lg);
   }
-  
+
   .stat-card:active {
     transform: scale(0.98);
   }
@@ -342,7 +371,7 @@
 .stat-number {
   font-size: 2rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -350,9 +379,12 @@
 }
 
 .stat-label {
-  color: var(--text-secondary);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 /* Large Desktop - 1200px+ */
