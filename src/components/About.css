@@ -65,19 +65,22 @@
   align-items: center;
   gap: 1rem;
   padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  border-bottom: 1px solid var(--border-light);
   transition: var(--transition);
 }
 
 .about-list li:hover {
-  background: rgba(70, 144, 226, 0.05);
+  background: color-mix(in srgb, var(--primary-color) 5%, transparent);
   border-radius: 8px;
   padding-left: 1rem;
 }
 
 .list-icon {
-  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 2rem;
+  color: var(--primary-color);
 }
 
 .about-journey p {
@@ -104,9 +107,10 @@
 }
 
 .card-icon {
-  font-size: 3rem;
+  display: flex;
+  justify-content: center;
   margin-bottom: 1rem;
-  display: block;
+  color: var(--primary-color);
 }
 
 .about-card h4 {

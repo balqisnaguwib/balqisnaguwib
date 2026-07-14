@@ -25,7 +25,6 @@
   position: absolute;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  animation: floatSlow 8s ease-in-out infinite;
 }
 
 .footer-shape-1 {
@@ -33,7 +32,6 @@
   height: 150px;
   top: 20%;
   left: 10%;
-  animation-delay: 0s;
 }
 
 .footer-shape-2 {
@@ -41,7 +39,6 @@
   height: 100px;
   top: 60%;
   right: 15%;
-  animation-delay: 3s;
 }
 
 .footer-shape-3 {
@@ -49,12 +46,6 @@
   height: 120px;
   bottom: 20%;
   left: 60%;
-  animation-delay: 6s;
-}
-
-@keyframes floatSlow {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(180deg); }
 }
 
 .footer-content {
@@ -92,7 +83,7 @@
 
 .footer-description {
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
+  color: color-mix(in srgb, var(--text-light) 80%, transparent);
   font-size: 1rem;
 }
 
@@ -132,7 +123,7 @@
 }
 
 .footer-section a {
-  color: rgba(255, 255, 255, 0.8);
+  color: color-mix(in srgb, var(--text-light) 80%, transparent);
   text-decoration: none;
   transition: var(--transition);
   display: inline-block;
@@ -154,20 +145,22 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-light);
+  background: color-mix(in srgb, var(--text-light) 5%, transparent);
   border-radius: 8px;
   transition: var(--transition);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
 }
 
 .social-link:hover {
-  background: rgba(70, 144, 226, 0.2);
+  background: color-mix(in srgb, var(--primary-color) 20%, transparent);
   border-color: var(--primary-color);
   transform: translateY(-2px);
 }
 
 .social-icon {
-  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
   min-width: 1.5rem;
 }
 
@@ -177,7 +170,7 @@
 
 .contact-details p {
   margin-bottom: 0.75rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: color-mix(in srgb, var(--text-light) 80%, transparent);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -202,16 +195,22 @@
 }
 
 .copyright {
-  color: rgba(255, 255, 255, 0.6);
+  color: color-mix(in srgb, var(--text-light) 60%, transparent);
   font-size: 0.9rem;
 }
 
 .footer-note {
-  color: rgba(255, 255, 255, 0.6);
+  color: color-mix(in srgb, var(--text-light) 60%, transparent);
   font-size: 0.9rem;
   display: flex;
   align-items: center;
   gap: 0.25rem;
+}
+
+.heart-icon {
+  color: var(--accent-color);
+  fill: var(--accent-color);
+  vertical-align: middle;
 }
 
 @media (max-width: 768px) {
